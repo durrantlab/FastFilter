@@ -1,4 +1,4 @@
-FastFilteri
+FastFilter
 ==========
 
 Contributors: Jacob Durrant
