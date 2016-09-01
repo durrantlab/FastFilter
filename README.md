@@ -1,13 +1,13 @@
 FastFilter
 ==========
 
-Contributors: Jacob Durrant
-Tags: simple, category, filter, tags
-Requires at least: 3.9
-Tested up to: 4.0
-Stable tag: 1.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+* Contributors: Jacob Durrant
+* Tags: simple, category, filter, tags
+* Requires at least: 3.9
+* Tested up to: 4.0
+* Stable tag: 1.0
+* License: GPLv2 or later
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Given a list of category ids, slugs, or names, this plugin creates a list of
 all posts that can be filtered by their tags.
@@ -31,9 +31,9 @@ Installation
 ============
 
 1. Download the plugin
-1. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your
+2. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your
    WordPress dashboard
-1. Activate the plugin through the 'Plugins' menu in WordPress
+3. Activate the plugin through the 'Plugins' menu in WordPress
 
 Frequently Asked Questions
 ==========================
