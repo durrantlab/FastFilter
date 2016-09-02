@@ -267,49 +267,62 @@ function fast_filter_func( $atts ) {
 	$args = array('category' => implode(",", $categories));
 	$myposts = get_posts($args);
 	$indx = 0;
-	foreach ($myposts as $post) {
-		$status = $post->post_status;
+	if ((count($myposts) > 0) && ($args["category"] !== "")) {
 
-		if ($status == "publish") {
-			$title = $post->post_title;
-			$content = $post->post_content;
-			//$excerpt = $post->post_excerpt;
-			$time = $post->post_modified;
-
-			$id = $post->ID;
-			$link = get_permalink($post);
-
-			$posttags = get_the_tags($post->ID);
-			$tag_names = array();
-			$tag_slugs = array();
-			foreach ($posttags as $posttag) {
-				$tag_names[] = $posttag->name;
-				$tag_slugs[] = $posttag->slug;
-				$tag_name_to_slug[$posttag->name] = $posttag->slug; 
-				$all_tags[] = $posttag->name;
+		try {
+			foreach ($myposts as $post) {
+				$tsd = $post;
 			}
-
-			$tag_names_as_str = implode(" ", $tag_names);
-			$tag_slugs_as_str = implode(" ", $tag_slugs);
-
-			$indx++;
-			$odd_even_class = "fastfilter-even";
-			if ($indx % 2 == 0) {$odd_even_class = "fastfilter-odd";}
-
-			$html .= "
-			<div class='fastfilter-post-item fastfilter-post-item-styling $tag_slugs_as_str $odd_even_class' data-href='$link'>
-				<div class='fastfilter-title'><a class='fastfilter-post-url' href='$link'>$title</a></div>
-				<div class='fastfilter-content'>
-					<div class='fastfilter-gradient-cover'></div>
-					$content
-				</div>
-				<div class='fastfilter-date'>$time</div>
-				<div class='fastfilter-tags-list'>$tag_names_as_str</div>
-				<div class='fastfilter-clearfix'></div>
-			</div>
-			";
+		} catch (Exception $e) {
+			error_log("HI".print_r($posttags, true));			
 		}
-	};
+
+		foreach ($myposts as $post) {
+			$status = $post->post_status;
+
+			if ($status == "publish") {
+				$title = $post->post_title;
+				$content = $post->post_content;
+				//$excerpt = $post->post_excerpt;
+				$time = $post->post_modified;
+
+				$id = $post->ID;
+				$link = get_permalink($post);
+
+				$posttags = get_the_tags($post->ID);
+				$tag_names = array();
+				$tag_slugs = array();
+				if (count($posttags) > 0) {
+					foreach ($posttags as $posttag) {
+						$tag_names[] = $posttag->name;
+						$tag_slugs[] = $posttag->slug;
+						$tag_name_to_slug[$posttag->name] = $posttag->slug; 
+						$all_tags[] = $posttag->name;
+					}
+				}
+
+				$tag_names_as_str = implode(" ", $tag_names);
+				$tag_slugs_as_str = implode(" ", $tag_slugs);
+
+				$indx++;
+				$odd_even_class = "fastfilter-even";
+				if ($indx % 2 == 0) {$odd_even_class = "fastfilter-odd";}
+
+				$html .= "
+				<div class='fastfilter-post-item fastfilter-post-item-styling $tag_slugs_as_str $odd_even_class' data-href='$link'>
+					<div class='fastfilter-title'><a class='fastfilter-post-url' href='$link'>$title</a></div>
+					<div class='fastfilter-content'>
+						<div class='fastfilter-gradient-cover'></div>
+						$content
+					</div>
+					<div class='fastfilter-date'>$time</div>
+					<div class='fastfilter-tags-list'>$tag_names_as_str</div>
+					<div class='fastfilter-clearfix'></div>
+				</div>
+				";
+			}
+		};
+	}
 	
 	// Add the "no results found" box too.
 	$html .= "
