@@ -283,6 +283,10 @@ function fast_filter_func( $atts ) {
 			if ($status == "publish") {
 				$title = $post->post_title;
 				$content = $post->post_content;
+
+				$content_modified = strip_tags($content);
+				$content_modified = substr($content_modified, 0, 400);
+
 				//$excerpt = $post->post_excerpt;
 				$time = $post->post_modified;
 
@@ -313,7 +317,7 @@ function fast_filter_func( $atts ) {
 					<div class='fastfilter-title'><a class='fastfilter-post-url' href='$link'>$title</a></div>
 					<div class='fastfilter-content'>
 						<div class='fastfilter-gradient-cover'></div>
-						$content
+						$content_modified
 					</div>
 					<div class='fastfilter-date'>$time</div>
 					<div class='fastfilter-tags-list'>$tag_names_as_str</div>
