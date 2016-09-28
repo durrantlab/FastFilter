@@ -9,6 +9,7 @@
     cursor: pointer;
     -webkit-transition: left 2s, top 2s; /* Safari */
     transition: left 2s, top 2s;
+    clear: both;
 }
 
 .fastfilter-title {
@@ -59,6 +60,9 @@
 
 .fastfilter-label {
     margin-right: 8px;
+    display: block;
+    float: left;
+    margin-bottom: 7px;
 }
 
 .fastfilter-label-text {
